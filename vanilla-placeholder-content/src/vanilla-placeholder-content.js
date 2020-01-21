@@ -1,20 +1,22 @@
 export class VanillaPlaceholderContent extends HTMLElement {
     constructor() {
         super();
-        const placeholder = document.createElement('placeholder');
-        placeholder.innerHTML = VanillaPlaceholderContent.template();
-        placeholder.style.height = this.getAttribute('height') || '50px';
-        placeholder.style.width = this.getAttribute('width') || '50px';
 
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(document.importNode(placeholder.content, true));
+        const placeholder = document.createElement('template');
+        const height = this.getAttribute('height') || '100px';
+        const width = this.getAttribute('width') || '100px';
+        placeholder.innerHTML = VanillaPlaceholderContent.template(height, width);
+
+        this.appendChild(document.importNode(placeholder.content, true));
     }
 
-    static template () {
+    static template (height, width) {
         return `
         <style>
         .placeholder {
             background-color: red;
+            width: ${height};
+            height: ${width};
         }
         </style>
         <div class='placeholder'>Placeholder</div>`;
