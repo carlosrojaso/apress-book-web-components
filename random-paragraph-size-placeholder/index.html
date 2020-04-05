@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - random-paragraph-size-placeholder</title>
+</head>
+<body>
+<random-paragraph-size-placeholder text="My Personal Text"></random-paragraph-size-placeholder>
+<script>
+class RandomParagraphSizePlaceholder extends HTMLElement {
+
+    constructor() {
+        console.log(`constructor hook`);
+        super();
+        const placeholder = document.createElement('template');
+        const myText = this.getAttribute('text') || 'Loren Ipsum';
+        const randomSize = Math.floor((Math.random() * (50 - 12 + 1)) + 12);
+        console.log(`randomSize: ${randomSize}`);
+        placeholder.innerHTML = RandomParagraphSizePlaceholder.template(myText, randomSize);
+
+        this.appendChild(document.importNode(placeholder.content, true));
+    }
+
+    connectedCallback() {
+        console.log(`connectedCallback hook`);
+    }
+    disconnectedCallback() {
+        console.log(`disconnectedCallback hook`);
+    }
+    
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        console.log(`attributeChangedCallback hook`);
+    }
+
+    adoptedCallback() {
+        console.log(`adoptedCallback hook`);
+    }
+
+    static template (myText, randomSize) {
+        return `
+        <div style="font-size:${randomSize}px">${myText}</div>`;
+    }
+}
+customElements.define('random-paragraph-size-placeholder', RandomParagraphSizePlaceholder);
+
+const element = document.querySelector('random-paragraph-size-placeholder');
+element.setAttribute(`text`, `New Text`);
+</script>
+</body>
+</html>
