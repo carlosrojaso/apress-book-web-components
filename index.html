@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - error-component</title>
+</head>
+<body>
+<div id="parent">
+    <error-component kind="warning" text="My Custom Warning"></error-component>
+</div>
+<script>
+class ErrorComponent extends HTMLElement {
+
+    constructor() {
+        super();
+    }
+
+    static template () {
+        return `
+        <template>
+        </template>    
+        `;
+    }
+}
+customElements.define('error-component', ErrorComponent);
+</script>
+</body>
+</html>
