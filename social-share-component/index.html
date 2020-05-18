@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - social-share-component</title>
+</head>
+<body>
+<div id="parent">
+    <social-share-component network="tw" user="carlosrojas_o"></social-share-component>
+    <social-share-component network="fb" user="carlosrojas_o"></social-share-component>
+</div>
+<script>
+class SocialShareComponent extends HTMLElement {
+
+    constructor() {
+        super();
+    }
+
+    static template () {
+        return ``;
+    }
+}
+customElements.define('social-share-component', SocialShareComponent);
+</script>
+</body>
+</html>
