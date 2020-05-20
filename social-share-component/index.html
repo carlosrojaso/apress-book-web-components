@@ -7,17 +7,69 @@
 </head>
 <body>
 <div id="parent">
-    <social-share-component network="tw" user="carlosrojas_o"></social-share-component>
-    <social-share-component network="fb" user="carlosrojas_o"></social-share-component>
+    <social-share-component socialNetwork="tw" user="carlosrojas_o"></social-share-component>
+    <social-share-component socialNetwork="fb" user="carlosrojas_o"></social-share-component>
 </div>
 <script>
 class SocialShareComponent extends HTMLElement {
 
     constructor() {
         super();
+
+        this.root = this.attachShadow({mode: 'open'});
+        this.container = document.createElement('div');
+        this.root.appendChild(this.container);
+        console.log('user', this.user);
+        console.log('network', this.socialNetwork);
+        switch(this.socialNetwork) {
+            case 'tw':
+                this.container.innerHTML = SocialShareComponent.twTemplate();
+                break;
+            case 'fb':
+                this.container.innerHTML = SocialShareComponent.fbTemplate();
+                break;
+        }
     }
 
-    static template () {
+    get socialNetwork() {
+        return this.getAttribute('socialNetwork') || 'tw';
+    }
+
+    set socialNetwork(newValue) {
+        this.setAttribute('socialNetwork', newValue);
+    }
+
+    get user() {
+        return this.getAttribute('user') || 'none';
+    }
+
+    set user(newValue) {
+        this.setAttribute('user', newValue);
+    }
+
+    static twTemplate() {
+        return `
+        <span class="twitter-button">
+            <a href="https://twitter.com/${this.user}">
+                Follow @${this.user}
+            </a>
+        </span>`;
+    }
+
+    static twStyle() {
+        return ``;
+    }
+
+    static fbTemplate() {
+        return `
+        <span class="facebook-button">
+            <a href="https://facebook.com/${this.user}">
+                Follow @${this.user}
+            </a>
+        </span>`;
+    }
+
+    static fbStyle() {
         return ``;
     }
 }
