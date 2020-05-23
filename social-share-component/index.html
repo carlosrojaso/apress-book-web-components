@@ -23,10 +23,10 @@ class SocialShareComponent extends HTMLElement {
         console.log('network', this.socialNetwork);
         switch(this.socialNetwork) {
             case 'tw':
-                this.container.innerHTML = SocialShareComponent.twTemplate();
+                this.container.innerHTML = SocialShareComponent.twTemplate(this.user);
                 break;
             case 'fb':
-                this.container.innerHTML = SocialShareComponent.fbTemplate();
+                this.container.innerHTML = SocialShareComponent.fbTemplate(this.user);
                 break;
         }
     }
@@ -47,30 +47,72 @@ class SocialShareComponent extends HTMLElement {
         this.setAttribute('user', newValue);
     }
 
-    static twTemplate() {
+    static twTemplate(user) {
         return `
+        ${SocialShareComponent.twStyle()}
         <span class="twitter-button">
-            <a href="https://twitter.com/${this.user}">
-                Follow @${this.user}
+            <a href="https://twitter.com/${user}">
+                Follow @${user}
             </a>
         </span>`;
     }
 
     static twStyle() {
-        return ``;
+        return `
+        <style>
+        a {
+            height: 20px;
+            padding: 3px 6px;
+            background-color: #1b95e0;
+            color: #fff;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 11px;
+            font-family:'Helvetica Neue', Arial, sans-serif;
+            line-height: 18px;
+            text-decoration: none;   
+        }
+
+        a:hover {  background-color: #0c7abf; }
+
+        span {
+            margin: 5px 2px;
+        }
+        </style>`;
     }
 
-    static fbTemplate() {
+    static fbTemplate(user) {
         return `
+        ${SocialShareComponent.fbStyle()}
         <span class="facebook-button">
-            <a href="https://facebook.com/${this.user}">
-                Follow @${this.user}
+            <a href="https://facebook.com/${user}">
+                Follow @${user}
             </a>
         </span>`;
     }
 
     static fbStyle() {
-        return ``;
+        return `
+        <style>
+        a {
+            height: 20px;
+            padding: 3px 6px;
+            background-color: #4267b2;
+            color: #fff;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 11px;
+            font-family:'Helvetica Neue', Arial, sans-serif;
+            line-height: 18px;
+            text-decoration: none;   
+        }
+
+        a:hover {  background-color: #0c7abf; }
+
+        span {
+            margin: 5px 2px;
+        }
+        </style>`;
     }
 }
 customElements.define('social-share-component', SocialShareComponent);
