@@ -19,8 +19,7 @@ class SocialShareComponent extends HTMLElement {
         this.root = this.attachShadow({mode: 'open'});
         this.container = document.createElement('div');
         this.root.appendChild(this.container);
-        console.log('user', this.user);
-        console.log('network', this.socialNetwork);
+
         switch(this.socialNetwork) {
             case 'tw':
                 this.container.innerHTML = SocialShareComponent.twTemplate(this.user);
