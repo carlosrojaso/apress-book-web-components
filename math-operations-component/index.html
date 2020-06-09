@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - math-operations-component</title>
+</head>
+<body>
+<div id="parent">
+    <math-operations-component operation="getCircumference" initialValue="4"></math-operations-component>
+    <math-operations-component operation="getCalcOneYear" initialValue="{interestRate: 0.2, currentVal: 100}"></math-operations-component>
+</div>
+<script>
+class MathOperationsComponent extends HTMLElement {
+
+    constructor() {
+        super();
+
+        this.root = this.attachShadow({mode: 'open'});
+        this.container = document.createElement('div');
+        this.root.appendChild(this.container);
+
+        console.log(`initialValue:`, this.getAttribute('initialValue'));
+    }
+}
+customElements.define('math-operations-component', MathOperationsComponent);
+</script>
+</body>
+</html>
