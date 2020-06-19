@@ -9,9 +9,10 @@
 <div id="parent">
     <math-operations-component operation="getCircumference" initialValue="4"></math-operations-component>
     <math-operations-component operation="getCalcOneYear" initialValue="0.2,100"></math-operations-component>
+    <math-operations-component operation="getLog2"></math-operations-component>
 </div>
 <script type="module">
-import {pi, euler} from './math-constants.js';
+import {pi, euler, ln2} from './math-constants.js';
 
 class MathOperationsComponent extends HTMLElement {
 
@@ -30,6 +31,9 @@ class MathOperationsComponent extends HTMLElement {
                 const [interestRate, currentVal] = this.getAttribute('initialValue').split(',');
                 this.container.innerHTML = MathOperationsComponent.getTemplate(this.getCalcOneYear(interestRate, currentVal));
                 break;
+            case 'getLog2':
+                this.container.innerHTML = MathOperationsComponent.getTemplate(this.getLN2());
+            break;
         }
     }
 
@@ -39,6 +43,10 @@ class MathOperationsComponent extends HTMLElement {
 
     getCalcOneYear(interestRate, currentVal) {
         return currentVal * (euler ** interestRate);
+    }
+
+    getLN2() {
+        return ln2;
     }
 
     static getTemplate(value) {
