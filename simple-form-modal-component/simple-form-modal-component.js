@@ -1,77 +1,68 @@
 class SimpleFormModalComponent extends HTMLElement {
+
   constructor() {
       super();
 
       this.root = this.attachShadow({mode: 'open'});
       this.container = document.createElement('div');
-      this.container.innerHTML = SimpleFormModalComponent.getTemplate();
+      this.container.innerHTML = this.getTemplate();
       this.root.appendChild(this.container.cloneNode(true));
 
-      this.titleTextbox = this.root.getElementById("ftitle");
-      this.titleTextbox.value = 'value';
-  }
+      this._open = this.getAttribute('open') || false;
 
-  attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'value') {
-      this.titleTextbox.value = newValue
-    }
+      this.modal = this.root.getElementById("myModal");
+      this.addBtn = this.root.getElementById("addBtn");
+      this.closeBtn = this.root.getElementById("closeBtn");
+
+      this.handleAdd = this.handleAdd.bind(this);
+      this.handleCancel = this.handleCancel.bind(this);
+
   }
 
   connectedCallback() {
-      const myBtn = this.root.getElementById("myBtn");
-      const addBtn = this.root.getElementById("addBtn");
-      const closeBtn = this.root.getElementById("closeBtn");
-      const modal = this.root.getElementById("myModal");
-      const form = this.root.getElementById("myForm");
-
-      myBtn.addEventListener('click', function() {
-        modal.style.display = "block";
-      });
-      addBtn.addEventListener('click',  this.handleAdd());
-      closeBtn.addEventListener('click',  this.handleCancel());
-
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-      }, true);
+    this.addBtn.addEventListener('click', this.handleAdd);
+    this.closeBtn.addEventListener('click', this.handleCancel);
   }
 
   disconnectedCallback () {
-    // this.inputNode.removeEventListener('change', this.validate)
+    this.addBtn.removeEventListener('click', this.handleAdd);
+    this.closeBtn.removeEventListener('click', this.handleCancel);
   }
 
-  getTitle() {
-    console.log(`title`, this.root.getElementById("ftitle"));
-    return this.root.getElementById("ftitle").value;
+  get open() {
+    return this._open;
   }
 
-  getDescription() {
-    return this.root.getElementById("fdesc").value;
-  }
-
-  get title() {
-    return this.titleTextbox.value;
-  }
-
-  set title(newValue) {
-    this.titleTextbox.value = newValue;
+  set open(newValue) {
+    this._open = newValue;
+    this.showModal(this._open);
   }
 
   handleAdd() {
-    this.dispatchEvent(new CustomEvent('addEvent', {detail: {title: this.titleTextbox.value, description: this.getDescription()}}));
+    const fTitle = this.root.getElementById('ftitle');
+    const fDesc = this.root.getElementById('fdesc');
+    this.dispatchEvent(new CustomEvent('addEvent', {detail: {title: fTitle.value, description: fDesc.value}}));
+
+    fTitle.value = '';
+    fDesc.value = '';
+    this.open = false;
   }
 
   handleCancel() {
-    this.root.getElementById("myModal").style.display = "none";
+    this.open = false;
   }
 
-  static get observedAttributes () {
-    return ['value']
+  showModal(state) {
+    if(state) {
+      this.modal.style.display = "block";
+    } else {
+      this.modal.style.display = "none"
+    }
   }
 
-  static getTemplate() {
+  getTemplate() {
       return `
-      ${SimpleFormModalComponent.getStyle()}
-      <button id="myBtn">Open Modal</button>
+      ${this.getStyle()}
       <div id="myModal" class="modal">
         <div class="modal-content">
           <form id="myForm">
@@ -79,14 +70,13 @@ class SimpleFormModalComponent extends HTMLElement {
             <input type="text" id="ftitle" name="ftitle"><br>
             <label for="fdesc">Description:</label><br>
             <textarea id="fdesc" name="fdesc" rows="4" cols="50"></textarea><br/>
-            <button id="addBtn">Add</button><button id="closeBtn">Close</button>
+            <button type="button" id="addBtn">Add</button><button type="button" id="closeBtn">Close</button>
           </form>
         </div>
-
       </div>`;
   }
 
-  static getStyle() {
+  getStyle() {
       return `
       <style>
         .modal {
