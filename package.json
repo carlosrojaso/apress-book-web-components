@@ -1,14 +1,16 @@
 {
   "name": "apress-simple-form-modal-component",
   "version": "1.0.1",
-  "description": "<h1 align=\"center\">Welcome to apress-book-web-components 👋</h1> <p>   <img alt=\"Version\" src=\"https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000\" />   <a href=\"https://twitter.com/carlosrojas_o\" target=\"_blank\">     <img alt=\"Twitter: carlosrojas_o\" src=\"https://img.shields.io/twitter/follow/carlosrojas_o.svg?style=social\" />   </a> </p>",
-  "main": "src/index.js",
+  "description": "Simple Form Modal Component",
+  "main": "dist/index.js",
   "module": "src/index.js",
   "directories": {
     "src": "src"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --mode production",
+    "start": "npm run build && serve example"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/carlosrojaso/apress-book-web-components/issues"
   },
-  "homepage": "https://github.com/carlosrojaso/apress-book-web-components#readme"
+  "homepage": "https://github.com/carlosrojaso/apress-book-web-components#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "path": "^0.12.7",
+    "rimraf": "^3.0.2",
+    "serve": "^11.3.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
 }
