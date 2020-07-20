@@ -1,1 +1,1 @@
-import * from './simple-form-modal-component';
+export * from './simple-form-modal-component';
