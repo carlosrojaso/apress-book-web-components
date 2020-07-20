@@ -1,1 +1,1 @@
-import * from './note-list-component';
+export * from './note-list-component';
