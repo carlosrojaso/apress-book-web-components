@@ -1,0 +1,38 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "simple-form-modal-component",
+      "path": "./simple-form-modal-component.js",
+      "description": "A Simple Form Modal Component",
+      "attributes": [
+        {
+          "name": "open",
+          "description": "The state to show/hide the modal.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "open",
+          "attribute": "open",
+          "description": "The state to show/hide the modal.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "events": [
+        {
+          "name": "addEvent"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "modal",
+          "description": "The button"
+        }
+      ]
+    }
+  ]
+}
