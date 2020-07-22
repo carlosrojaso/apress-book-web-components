@@ -24,13 +24,18 @@
       ],
       "events": [
         {
-          "name": "addEvent"
+          "name": "addEvent",
+          "description": "returns form data."
         }
       ],
       "cssParts": [
         {
           "name": "modal",
-          "description": "The button"
+          "description": "Window Modal CSS"
+        },
+        {
+          "name": "modal-content",
+          "description": "CSS Properties for form content"
         }
       ]
     }

@@ -3,7 +3,8 @@ import {LitElement, html, css} from 'lit-element';
 /**
  * A Simple Form Modal Component
  *
- * @csspart modal - The button
+ * @csspart modal - Window Modal CSS
+ * @csspart modal-content - CSS Properties for form content
  */
 export class SimpleFormModalComponent extends LitElement {
   static get styles() {
@@ -75,6 +76,9 @@ export class SimpleFormModalComponent extends LitElement {
   handleAdd() {
     const fTitle = this.shadowRoot.getElementById('ftitle');
     const fDesc = this.shadowRoot.getElementById('fdesc');
+    /**
+     * returns form data.
+     */
     this.dispatchEvent(new CustomEvent('addEvent', {detail: {title: fTitle.value, description: fDesc.value}}));
 
     fTitle.value = '';

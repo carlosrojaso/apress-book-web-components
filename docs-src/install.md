@@ -1,17 +1,11 @@
 ---
 layout: page.11ty.cjs
-title: <my-element> ⌲ Install
+title: <simple-form-modal-component> ⌲ Install
 ---
 
 # Install
 
-`<my-element>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
-
-## Local Installation
-
-```bash
-npm i my-element
-```
+`<simple-form-modal-component>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
 
 ## CDN
 
@@ -21,10 +15,10 @@ For this element to work from unpkg.com specifically, you need to include the `?
 
 ### HTML
 ```html
-<script type="module" src="https://unpkg.com/my-element?module"></script>
+<script type="module" src="http://unpkg.com/apress-simple-form-modal-component@1.0.3/dist/index.js"></script>
 ```
 
 ### JavaScript
 ```html
-import {MyElement} from 'https://unpkg.com/my-element?module';
+import {MyElement} from 'http://unpkg.com/apress-simple-form-modal-component@1.0.3/dist/index.js';
 ```
