@@ -16,12 +16,18 @@ import filesize from 'rollup-plugin-filesize';
 import {terser} from 'rollup-plugin-terser';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
 export default {
   input: 'simple-form-modal-component.js',
+  plugins: [
+    getBabelOutputPlugin({
+      presets: ['@babel/preset-env']
+    })
+  ],
   output: {
     file: 'simple-form-modal-component.bundled.js',
-    format: 'esm',
+    format: 'esm'
   },
   onwarn(warning) {
     if (warning.code !== 'THIS_IS_UNDEFINED') {
