@@ -1,4 +1,6 @@
 export class NoteListItemComponent extends HTMLElement {
+  static get observedAttributes() { return ['note', 'idx']; }
+
   constructor() {
     super();
 
@@ -19,6 +21,19 @@ export class NoteListItemComponent extends HTMLElement {
     this.delBtn.removeEventListener('click', this.handleDelete);
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch(name) {
+      case 'note':
+        this.note = JSON.parse(newValue);
+        this.handleUpdate();
+        break;
+      case 'idx':
+        this.idx = newValue;
+        this.handleUpdate(); 
+        break;
+    }
+   }
+
   get note() {
     return this._note;
   }
@@ -36,8 +51,15 @@ export class NoteListItemComponent extends HTMLElement {
   }
 
   handleDelete() {
-    this.dispatchEvent(new CustomEvent('delEvent', {bubbles: true, detail: {idx: this.idx}}));
+    this.dispatchEvent(new CustomEvent('del-event', {bubbles: true, detail: {idx: this.idx}}));
   }
+
+  handleUpdate() {
+    this.root.innerHTML = this.getTemplate();
+    this.delBtn = this.root.getElementById('deleteButton');
+    this.handleDelete = this.handleDelete.bind(this);
+    this.delBtn.addEventListener('click', this.handleDelete);
+   }
 
   getStyle() {
     return `

@@ -9,7 +9,7 @@ notesDataApi.getTasks(1)
     noteList.notes = allNotes;
   });
 
-formModal.addEventListener('addEvent', function(e) {
+formModal.addEventListener('add-event', function(e) {
   let notes = noteList.notes;
 
   notes.push({"title": e.detail.title, "description": e.detail.description});
