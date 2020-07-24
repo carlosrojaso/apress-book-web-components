@@ -41,7 +41,7 @@ export class SimpleFormModalComponent extends HTMLElement {
   handleAdd() {
     const fTitle = this.root.getElementById('ftitle');
     const fDesc = this.root.getElementById('fdesc');
-    this.dispatchEvent(new CustomEvent('addEvent', {detail: {title: fTitle.value, description: fDesc.value}}));
+    this.dispatchEvent(new CustomEvent('add-event', {bubbles: true, composed:true, detail: {title: fTitle.value, description: fDesc.value}}));
 
     fTitle.value = '';
     fDesc.value = '';
