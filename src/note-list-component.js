@@ -10,11 +10,11 @@ export class NoteListComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.root.addEventListener('delEvent', this.handleDelEvent);
+    this.root.addEventListener('del-event', this.handleDelEvent);
   }
 
   disconnectedCallback () {
-    this.root.removeEventListener('delEvent', this.handleDelEvent);
+    this.root.removeEventListener('del-event', this.handleDelEvent);
   }
 
   handleDelEvent(e) {
