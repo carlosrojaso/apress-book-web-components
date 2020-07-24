@@ -51,7 +51,7 @@ export class NoteListItemComponent extends HTMLElement {
   }
 
   handleDelete() {
-    this.dispatchEvent(new CustomEvent('del-event', {bubbles: true, detail: {idx: this.idx}}));
+    this.dispatchEvent(new CustomEvent('del-event', {bubbles: true,  composed: true, detail: {idx: this.idx}}));
   }
 
   handleUpdate() {
