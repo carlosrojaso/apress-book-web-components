@@ -7,13 +7,16 @@ export class NoteListItemComponent extends LitElement {
   static get properties() {
     return {
       /**
-       * The attribute is an Array of elements.
+       * The attribute is an Object.
        */
       note: {
         type: Object,
         attribute: true,
         reflect: true,
       },
+      /**
+       * The attribute is a number.
+       */
       idx: {
         type: Number,
         attribute: true,

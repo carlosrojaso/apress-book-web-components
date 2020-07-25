@@ -6,7 +6,7 @@ module.exports = class Docs {
   data() {
     return {
       layout: 'page.11ty.cjs',
-      title: '<note-list-component> ⌲ Docs',
+      title: '<note-list-item-component> ⌲ Docs',
     };
   }
 

@@ -1,11 +1,11 @@
 ---
 layout: page.11ty.cjs
-title: <note-list-component> ⌲ Install
+title: <note-list-item-component> ⌲ Install
 ---
 
 # Install
 
-`<note-list-component>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
+`<note-list-item-component>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
 
 ## CDN
 
@@ -13,10 +13,10 @@ npm CDNs like [unpkg.com]() can directly serve files that have been published to
 
 ### HTML
 ```html
-<script type="module" src="http://unpkg.com/apress-book-web-components-note-list/dist/index.js"></script>
+<script async type="module" src="http://unpkg.com/apress-note-list-item-component/dist/index.js"></script>
 ```
 
 ### JavaScript
 ```html
-import {NoteListComponent} from 'http://unpkg.com/apress-book-web-components-note-list/dist/index.js';
+import {NoteListItemComponent} from 'http://unpkg.com/apress-note-list-item-component/dist/index.js';
 ```

@@ -5,16 +5,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><note-list-component> ⌲ Docs</title>
+    <title><note-list-item-component> ⌲ Docs</title>
     <link rel="stylesheet" href="../docs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link href="../prism-okaidia.css" rel="stylesheet" />
-    <!-- <script type="module" src="../note-list-component.bundled.js"></script> -->
+    <!-- <script type="module" src="../note-list-item-component.bundled.js"></script> -->
   </head>
   <body>
     
 <header>
-  <h1>&lt;note-list-component></h1>
+  <h1>&lt;note-list-item-component></h1>
   <h2>A container for note-list-item-component.</h2>
 </header>
     
@@ -29,9 +29,9 @@
         
       <h1>API</h1>
       
-        <h2>&lt;note-list-component></h2>
+        <h2>&lt;note-list-item-component></h2>
         <div>
-          undefined
+          A Note List Item Component
         </div>
         
     <h3>Attributes</h3>
@@ -41,7 +41,11 @@
       </tr>
       
         <tr>
-          <td>notes</td><td>undefined</td><td>array</td><td>undefined</td>
+          <td>note</td><td>The attribute is an Object.</td><td>object</td><td>undefined</td>
+        </tr>
+      
+        <tr>
+          <td>idx</td><td>The attribute is a number.</td><td>number</td><td>undefined</td>
         </tr>
       
     </table>
@@ -54,57 +58,29 @@
       </tr>
       
         <tr>
-          <td>notes</td><td>notes</td><td>undefined</td><td>array</td><td>undefined</td>
+          <td>note</td><td>note</td><td>The attribute is an Object.</td><td>object</td><td>undefined</td>
         </tr>
       
         <tr>
-          <td>hasUpdated</td><td>undefined</td><td>undefined</td><td>number</td><td>undefined</td>
-        </tr>
-      
-        <tr>
-          <td>updateComplete</td><td>undefined</td><td>undefined</td><td>Promise<any></td><td>undefined</td>
+          <td>idx</td><td>idx</td><td>The attribute is a number.</td><td>number</td><td>undefined</td>
         </tr>
       
     </table>
     
         
-            
-          
         
-        
-        
-        <h2>&lt;note-list-component></h2>
-        <div>
-          A Note List Component
-        </div>
-        
-    <h3>Attributes</h3>
+    <h3>Events</h3>
     <table>
       <tr>
-        <th>Name</th><th>Description</th><th>Type</th><th>Default</th>
+        <th>Name</th><th>Description</th>
       </tr>
       
         <tr>
-          <td>notes</td><td>The attribute is an Array of elements.</td><td>array</td><td>undefined</td>
+          <td>del-event</td><td>undefined</td>
         </tr>
       
     </table>
-  
-        
-    <h3>Properties</h3>
-    <table>
-      <tr>
-        <th>Name</th><th>Attribute</th><th>Description</th><th>Type</th><th>Default</th>
-      </tr>
       
-        <tr>
-          <td>notes</td><td>notes</td><td>The attribute is an Array of elements.</td><td>array</td><td>undefined</td>
-        </tr>
-      
-    </table>
-    
-        
-            
           
         
         

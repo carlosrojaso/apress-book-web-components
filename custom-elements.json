@@ -2,47 +2,38 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "note-list-component",
-      "path": "./dist/note-list-component.bundled.js",
+      "name": "note-list-item-component",
+      "path": "./note-list-item-component.js",
+      "description": "A Note List Item Component",
       "attributes": [
         {
-          "name": "notes",
-          "type": "array"
-        }
-      ],
-      "properties": [
-        {
-          "name": "notes",
-          "attribute": "notes",
-          "type": "array"
+          "name": "note",
+          "description": "The attribute is an Object.",
+          "type": "object"
         },
         {
-          "name": "hasUpdated",
+          "name": "idx",
+          "description": "The attribute is a number.",
           "type": "number"
-        },
-        {
-          "name": "updateComplete",
-          "type": "Promise<any>"
-        }
-      ]
-    },
-    {
-      "name": "note-list-component",
-      "path": "./note-list-component.js",
-      "description": "A Note List Component",
-      "attributes": [
-        {
-          "name": "notes",
-          "description": "The attribute is an Array of elements.",
-          "type": "array"
         }
       ],
       "properties": [
         {
-          "name": "notes",
-          "attribute": "notes",
-          "description": "The attribute is an Array of elements.",
-          "type": "array"
+          "name": "note",
+          "attribute": "note",
+          "description": "The attribute is an Object.",
+          "type": "object"
+        },
+        {
+          "name": "idx",
+          "attribute": "idx",
+          "description": "The attribute is a number.",
+          "type": "number"
+        }
+      ],
+      "events": [
+        {
+          "name": "del-event"
         }
       ]
     }

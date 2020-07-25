@@ -1,18 +1,18 @@
 ---
 layout: page.11ty.cjs
-title: <note-list-component> ⌲ Home
+title: <note-list-item-component> ⌲ Home
 ---
 
-# &lt;note-list-component>
+# &lt;note-list-item-component>
 
-`<note-list-component>` is an awesome element. It's a container for `<note-list-item-component>`.
+`<note-list-item-component>` is an awesome element. It's a container for `<note-list-item-component>`.
 
 ## As easy as HTML
 
 
 ```html
 <body>
-  <note-list-component></note-list-component>
+  <note-list-item-component></note-list-item-component>
 <body>
 ```
 
@@ -20,6 +20,6 @@ title: <note-list-component> ⌲ Home
 
 ```html
 <body>
-  <note-list-component notes="[{"title": "Note 1", "description": "Loren Ipsum"}]"></note-list-component>
+  <note-list-item-component note="{"title": "Note 1", "description": "Loren Ipsum"}"></note-list-item-component>
 <body>
 ```

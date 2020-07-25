@@ -30,7 +30,7 @@ description: A basic example
 <h3>HTML</h3>
 
 ```html
-<note-list-component></note-list-component>
+<note-list-item-component></note-list-item-component>
 ```
 
 ```js
