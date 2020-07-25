@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>&lt;note-list-component> Demo</title>
     <script async type="module" src="http://unpkg.com/apress-simple-form-modal-component/dist/index.js"></script>
-    <script type="module" src="../note-list-component.js"></script>
-    <script async type="module" src="http://unpkg.com/apress-note-list-item-component/dist/index.js"></script>
+    <script async type="module" src="http://unpkg.com/apress-book-web-components-note-list/dist/index.js"></script>
+    <script async type="module" src="../note-list-item-component.js"></script>
   </head>
   <body>
     <button id="myBtn">Open Modal</button>
@@ -16,9 +16,10 @@
       const myBtn = document.getElementById('myBtn');
       const formModal = document.querySelector('simple-form-modal-component');
       const noteList = document.querySelector('note-list-component');
-      const allNotes = [{"title": "Note 1", "description": 'Loren Ipsum'}];
+      const allNotes = [{title: "Note 1", description: 'Loren Ipsum'}, {title: "Note 2", description: 'Loren Ipsum'}];
 
-      noteList.notes = allNotes;
+      //noteList.notes = allNotes;
+      noteList.setAttribute('notes', JSON.stringify(allNotes));
       myBtn.addEventListener('click', function() {
         formModal.open = !formModal.open;
       });
