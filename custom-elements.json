@@ -3,39 +3,51 @@
   "tags": [
     {
       "name": "simple-form-modal-component",
-      "path": "./simple-form-modal-component.js",
-      "description": "A Simple Form Modal Component",
+      "path": "./dist/simple-form-modal-component.bundled.js",
       "attributes": [
         {
           "name": "open",
-          "description": "The state to show/hide the modal.",
-          "type": "boolean",
-          "default": "false"
+          "type": "boolean"
         }
       ],
       "properties": [
         {
           "name": "open",
           "attribute": "open",
-          "description": "The state to show/hide the modal.",
-          "type": "boolean",
-          "default": "false"
+          "type": "boolean"
+        },
+        {
+          "name": "hasUpdated",
+          "type": "number"
+        },
+        {
+          "name": "updateComplete",
+          "type": "Promise<any>"
         }
       ],
       "events": [
         {
-          "name": "addEvent",
-          "description": "returns form data."
+          "name": "addEvent"
+        }
+      ]
+    },
+    {
+      "name": "note-list-component",
+      "path": "./note-list-component.js",
+      "description": "A Note List Component",
+      "attributes": [
+        {
+          "name": "notes",
+          "description": "The attribute is an Array of elements.",
+          "type": "array"
         }
       ],
-      "cssParts": [
+      "properties": [
         {
-          "name": "modal",
-          "description": "Window Modal CSS"
-        },
-        {
-          "name": "modal-content",
-          "description": "CSS Properties for form content"
+          "name": "notes",
+          "attribute": "notes",
+          "description": "The attribute is an Array of elements.",
+          "type": "array"
         }
       ]
     }

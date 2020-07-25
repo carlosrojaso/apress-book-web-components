@@ -1,18 +1,18 @@
 ---
 layout: page.11ty.cjs
-title: <simple-form-modal-component> ⌲ Home
+title: <note-list-component> ⌲ Home
 ---
 
-# &lt;simple-form-modal-component>
+# &lt;note-list-component>
 
-`<simple-form-modal-component>` is an awesome element. It's a window modal with a form that send data throug a Custom event.
+`<note-list-component>` is an awesome element. It's a container for `<note-list-item-component>`.
 
 ## As easy as HTML
 
 
 ```html
 <body>
-  <simple-form-modal-component></simple-form-modal-component>
+  <note-list-component></note-list-component>
 <body>
 ```
 
@@ -20,6 +20,6 @@ title: <simple-form-modal-component> ⌲ Home
 
 ```html
 <body>
-  <simple-form-modal-component open="true"></simple-form-modal-component>
+  <note-list-component notes="[{"title": "Note 1", "description": "Loren Ipsum"}]"></note-list-component>
 <body>
 ```

@@ -19,14 +19,14 @@ import replace from '@rollup/plugin-replace';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
 export default {
-  input: 'simple-form-modal-component.js',
+  input: 'note-list-component.js',
   plugins: [
     getBabelOutputPlugin({
       presets: ['@babel/preset-env']
     })
   ],
   output: {
-    file: 'simple-form-modal-component.bundled.js',
+    file: 'note-list-component.bundled.js',
     format: 'esm'
   },
   onwarn(warning) {

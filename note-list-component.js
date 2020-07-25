@@ -1,10 +1,9 @@
-import {LitElement, html, css} from 'lit-element';
+import { LitElement, html } from "lit-element";
 
 /**
  * A Note List Component
  */
 export class NoteListComponent extends LitElement {
-
   static get properties() {
     return {
       /**
@@ -13,15 +12,15 @@ export class NoteListComponent extends LitElement {
       notes: {
         type: Array,
         attribute: true,
-        reflect: true
-      }
+        reflect: true,
+      },
     };
   }
 
   constructor() {
     super();
-    this.notes = this.getAttribute('notes') || [];
-    this.addEventListener('del-event', this.handleDelEvent);
+    this.notes = this.getAttribute("notes") || [];
+    this.addEventListener("del-event", this.handleDelEvent);
   }
 
   attributeChangedCallback() {
@@ -31,21 +30,19 @@ export class NoteListComponent extends LitElement {
 
   render() {
     return html`
-    ${this.notes.map(
-      (note, idx) => {
-        return html`
-        <note-list-item-component
-        note="${JSON.stringify(note)}"
-        idx="${idx}"></note-list-item-component>`;
-      }
-    )}
+      ${this.notes.map((note, idx) => {
+        return html` <note-list-item-component
+          note="${JSON.stringify(note)}"
+          idx="${idx}"
+        ></note-list-item-component>`;
+      })}
     `;
   }
 
   handleDelEvent(e) {
-    console.log(e);
     this.notes.splice(e.detail.idx, 1);
+    this.requestUpdate();
   }
 }
 
-window.customElements.define('note-list-component', NoteListComponent);
+window.customElements.define("note-list-component", NoteListComponent);
