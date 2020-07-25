@@ -1,4 +1,6 @@
 export class NoteListComponent extends HTMLElement {
+  static get observedAttributes() { return ['notes']; }
+
   constructor() {
     super();
 
@@ -7,6 +9,15 @@ export class NoteListComponent extends HTMLElement {
     this.root.innerHTML = this.render();
 
     this.handleDelEvent = this.handleDelEvent.bind(this);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch(name) {
+      case 'notes':
+        this.note = JSON.parse(newValue);
+        this.root.innerHTML = this.render();
+        break;
+    }
   }
 
   connectedCallback() {
