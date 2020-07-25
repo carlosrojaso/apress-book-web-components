@@ -2,19 +2,19 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "simple-form-modal-component",
-      "path": "./dist/simple-form-modal-component.bundled.js",
+      "name": "note-list-component",
+      "path": "./dist/note-list-component.bundled.js",
       "attributes": [
         {
-          "name": "open",
-          "type": "boolean"
+          "name": "notes",
+          "type": "array"
         }
       ],
       "properties": [
         {
-          "name": "open",
-          "attribute": "open",
-          "type": "boolean"
+          "name": "notes",
+          "attribute": "notes",
+          "type": "array"
         },
         {
           "name": "hasUpdated",
@@ -23,11 +23,6 @@
         {
           "name": "updateComplete",
           "type": "Promise<any>"
-        }
-      ],
-      "events": [
-        {
-          "name": "addEvent"
         }
       ]
     },

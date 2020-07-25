@@ -5,28 +5,25 @@ tags: example
 name: Basic
 description: A basic example
 ---
-<script async src="https://unpkg.com/browse/@webcomponents/webcomponentsjs@2.4.3/webcomponents-bundle.js"></script>
 <script async type="module" src="http://unpkg.com/apress-simple-form-modal-component/dist/index.js"></script>
 <script async type="module" src="http://unpkg.com/apress-book-web-components-note-list/dist/index.js"></script>
 <script async type="module" src="http://unpkg.com/apress-note-list-item-component/dist/index.js"></script>
-<button id="myBtn">Open Modal</button>
-<simple-form-modal-component></simple-form-modal-component>
-<note-list-component></note-list-component>
+<div>
+  <button id="myBtn">Open Modal</button>
+  <simple-form-modal-component></simple-form-modal-component>
+  <note-list-component></note-list-component>
+</div>
 <script>
   const myBtn = document.getElementById('myBtn');
   const formModal = document.querySelector('simple-form-modal-component');
   const noteList = document.querySelector('note-list-component');
-  const allNotes = [{"title": "Note 1", "description": 'Loren Ipsum'}];
-
-  noteList.notes = allNotes;
   myBtn.addEventListener('click', function() {
     formModal.open = !formModal.open;
   });
   formModal.addEventListener('add-event', function(e) {
     let notes = noteList.notes;
-
     notes.push({title: e.detail.title, description: e.detail.description});
-    noteList.setAttribute('notes', JSON.stringify(notes));
+    noteList.notes = notes;
   });
 </script>
 
