@@ -1,28 +1,18 @@
+<!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <mwc-top-app-bar centerTitle>
+    <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
+    <div slot="title">VueNoteApp</div>
+    <mwc-icon-button icon="help" slot="actionItems"></mwc-icon-button>
+    <div><!-- content --></div>
+  </mwc-top-app-bar>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import '@material/mwc-top-app-bar';
+import '@material/mwc-icon-button';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
