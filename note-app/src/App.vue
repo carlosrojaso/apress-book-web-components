@@ -1,10 +1,9 @@
 <!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
   <mwc-top-app-bar centerTitle>
-    <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
-    <div slot="title">VueNoteApp</div>
-    <mwc-icon-button icon="help" slot="actionItems"></mwc-icon-button>
-    <div><!-- content --></div>
+    <div slot="title"><router-link to="/">VueNoteApp</router-link></div>
+    <div slot="actionItems"><router-link to="/About">About</router-link></div>
+    <div><router-view/></div>
   </mwc-top-app-bar>
 </template>
 
@@ -14,5 +13,18 @@ import '@material/mwc-icon-button';
 
 export default {
   name: 'App',
+  methods: {
+    handleAbout() {
+      this.$router.push('About');
+    }
+  },
 }
 </script>
+
+<style>
+  a, a:visited {
+    color:white;
+    text-decoration:none;
+    padding: 5px;
+  }
+</style>
