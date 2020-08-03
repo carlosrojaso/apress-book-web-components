@@ -21,27 +21,27 @@
         </mwc-textfield>
       </div>
       <div class="formFields">
-      <mwc-textfield
-        id="text-description"
-        outlined
-        minlength="3"
-        label="Description"
-        required>
-      </mwc-textfield>
+        <mwc-textfield
+          id="text-description"
+          outlined
+          minlength="3"
+          label="Description"
+          required>
+        </mwc-textfield>
       </div>
       <div>
-      <mwc-button
-        id="primary-action-button"
-        slot="primaryAction"
-        @click="handleAddNote">
-        Add
-      </mwc-button>
-      <mwc-button
-        slot="secondaryAction"
-        dialogAction="close"
-        @click="handleClose">
-        Cancel
-      </mwc-button>
+        <mwc-button
+          id="primary-action-button"
+          slot="primaryAction"
+          @click="handleAddNote">
+          Add
+        </mwc-button>
+        <mwc-button
+          slot="secondaryAction"
+          dialogAction="close"
+          @click="handleClose">
+          Cancel
+        </mwc-button>
       </div>
     </mwc-dialog>
   </div>
@@ -53,19 +53,37 @@ import '@material/mwc-fab';
 import '@material/mwc-button';
 import '@material/mwc-dialog';
 import '@material/mwc-textfield';
-import { notesData } from '../utils/DummyData';
+import { fireApp } from'../firebase'
 import { v4 as uuidv4 } from 'uuid';
+
+const db = fireApp.database().ref();
 
 export default {
   name: 'Dashboard',
   data() {
     return {
-      notes: notesData
+      notes: []
     }
+  },
+  mounted() {
+    db.once('value', (notes) => {
+      notes.forEach((note) => {
+        this.notes.push({
+          id: note.child('id').val(),
+          title: note.child('title').val(),
+          description: note.child('description').val(),
+          ref: note.ref
+        })
+      })
+    });
   },
   methods: {
     handleDelete(id) {
       const noteToDelete = this.notes.findIndex((item) => (item.id === id));
+      const noteRef = this.notes[noteToDelete].ref;
+      if(noteRef) {
+        noteRef.remove();
+      }
       this.notes.splice(noteToDelete, 1);
     },
     handleAdd() {
@@ -80,7 +98,9 @@ export default {
 
       if(isValid) {
         const newIndex = uuidv4();
-        this.notes.push({id: newIndex, title: txtTitle.value, description: txtDescription.value});
+        const newItem = {id: newIndex, title: txtTitle.value, description: txtDescription.value};
+        this.notes.push(newItem);
+        db.push(newItem);
 
         txtTitle.value ='';
         txtDescription.value = '';
