@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@material/mwc-button": "^0.17.2",
+    "@material/mwc-dialog": "^0.17.2",
     "@material/mwc-fab": "^0.17.2",
     "@material/mwc-icon-button": "^0.17.2",
     "@material/mwc-list": "^0.17.2",
+    "@material/mwc-textfield": "^0.17.2",
     "@material/mwc-top-app-bar": "^0.17.2",
     "core-js": "^3.6.5",
+    "uuid": "^8.3.0",
     "vue": "^3.0.0-0",
     "vue-router": "^4.0.0-0"
   },
