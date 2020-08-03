@@ -1,11 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
+import Login from '../views/Login.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '',
+    component: Login
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue')
   },
   {
     path: '/about',
@@ -18,5 +27,4 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
 export default router
