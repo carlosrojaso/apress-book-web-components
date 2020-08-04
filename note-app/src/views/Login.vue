@@ -64,7 +64,8 @@ export default {
     return {
       actionText: 'Login',
       actionButton: 'Send',
-      linkButton: 'Register'
+      linkButton: 'Register',
+      user: null
     }
   },
   methods: {
@@ -84,6 +85,21 @@ export default {
     },
     goToDashboard () {
       this.$router.push('/dashboard');
+    },
+    isUserLoggedIn () {
+        return new Promise(
+          (resolve, reject) => {
+            auth.onAuthStateChanged(function(user) {
+              if (user) {
+                this.user = user;
+                resolve(user);
+              }
+              else {
+                reject(user);
+              }
+            })
+          }
+        );
     },
     signInUser (email, password) {
       auth.signInWithEmailAndPassword(email,password)

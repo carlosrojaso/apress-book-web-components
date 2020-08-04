@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
+import { fireApp } from '../firebase';
 
 const routes = [
   {
@@ -14,7 +15,10 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue')
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/about',
@@ -27,4 +31,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  if (requiresAuth && !await fireApp.getCurrentUser()) {
+    next('Login');
+  } else {
+    next();
+  }
+})
+
 export default router

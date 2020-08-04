@@ -3,19 +3,48 @@
   <mwc-top-app-bar>
     <div slot="title"><router-link to="/">VueNoteApp</router-link></div>
     <div slot="actionItems"><router-link to="/About">About</router-link></div>
+    <div slot="actionItems" v-if="logged" @click="handleLogout">Logout</div>
     <div><router-view/></div>
   </mwc-top-app-bar>
 </template>
 
 <script>
 import '@material/mwc-top-app-bar';
-import '@material/mwc-icon-button';
+
+import { fireApp } from './firebase';
+const auth = fireApp.auth();
 
 export default {
   name: 'App',
+  data() {
+    return {
+      logged: false
+    }
+  },
+  mounted() {
+    fireApp.getCurrentUser()
+      .then((user)=> {
+        this.logged = user;
+        this.$router.push('Dashboard');
+        })
+      .catch(() => {
+        this.logged = false;
+      });
+  },
   methods: {
     handleAbout() {
       this.$router.push('About');
+    },
+    handleLogout() {
+      auth.signOut()
+        .then(()=>{
+          this.$router.push('/login');
+          this.logged= false;
+          })
+        .catch((error)=> {
+          // eslint-disable-next-line 
+          console.log('error', error)
+        });
     }
   },
 }
