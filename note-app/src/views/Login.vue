@@ -86,6 +86,13 @@ export default {
     goToDashboard () {
       this.$router.push('/dashboard');
     },
+    handleClear() {
+      let txtEmail = this.$el.querySelector('#text-email');
+      let txtPassword = this.$el.querySelector('#text-password');
+
+      txtEmail.value = '';
+      txtPassword.value ='';
+    },
     isUserLoggedIn () {
         return new Promise(
           (resolve, reject) => {
@@ -116,8 +123,11 @@ export default {
     signUpUser (email, password) {
       auth.createUserWithEmailAndPassword(email,password)
       .then(
-        // eslint-disable-next-line
-        (user) => {console.log('User registered.', user)}
+        (user) => {
+          // eslint-disable-next-line
+          console.log('User registered.', user);
+          this.goToDashboard();
+        }
       )
       .catch(
         // eslint-disable-next-line

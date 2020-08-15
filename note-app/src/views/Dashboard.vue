@@ -57,27 +57,51 @@ import { fireApp } from'../firebase'
 import { v4 as uuidv4 } from 'uuid';
 
 const db = fireApp.database().ref();
+const auth = fireApp.auth();
 
 export default {
   name: 'Dashboard',
   data() {
     return {
-      notes: []
+      notes: [],
+      user: null
     }
   },
   mounted() {
-    db.once('value', (notes) => {
-      notes.forEach((note) => {
-        this.notes.push({
-          id: note.child('id').val(),
-          title: note.child('title').val(),
-          description: note.child('description').val(),
-          ref: note.ref
-        })
-      })
-    });
+    this.isUserLoggedIn()
+    .then(
+      (user) => {
+        this.user = user;
+        this.updateLogged();
+        this.getUserNotes();
+      }
+    )
+    .catch(
+      () => {
+        this.$router.push('/login');
+      }
+    )
+    ;
   },
   methods: {
+    getUserNotes() {
+      db.orderByChild('userId')
+        .equalTo(this.user.uid)
+        .once("value")
+        .then(
+          (notes) => {
+            notes.forEach((note) => {
+              this.notes.push({
+                id: note.child('id').val(),
+                title: note.child('title').val(),
+                description: note.child('description').val(),
+                userId: note.child('userId').val(),
+                ref: note.ref
+              })
+            })
+          }
+        );
+    },
     handleDelete(id) {
       const noteToDelete = this.notes.findIndex((item) => (item.id === id));
       const noteRef = this.notes[noteToDelete].ref;
@@ -98,7 +122,12 @@ export default {
 
       if(isValid) {
         const newIndex = uuidv4();
-        const newItem = {id: newIndex, title: txtTitle.value, description: txtDescription.value};
+        const newItem = {
+          id: newIndex,
+          title: txtTitle.value,
+          description: txtDescription.value,
+          userId: this.user.uid
+        };
         this.notes.push(newItem);
         db.push(newItem);
 
@@ -115,6 +144,24 @@ export default {
       txtTitle.value ='';
       txtDescription.value = '';
       formDialog.close();
+    },
+    updateLogged() {
+      this.$emit("update-logged", true);
+    },
+    isUserLoggedIn () {
+        return new Promise(
+          (resolve, reject) => {
+            auth.onAuthStateChanged(function(user) {
+              if (user) {
+                resolve(user);
+              }
+              else {
+                reject(user);
+              }
+            })
+          }
+        )
+        ;
     }
   },
 }

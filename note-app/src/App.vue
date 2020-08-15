@@ -4,7 +4,7 @@
     <div slot="title"><router-link to="/">VueNoteApp</router-link></div>
     <div slot="actionItems"><router-link to="/About">About</router-link></div>
     <div slot="actionItems" v-if="logged" @click="handleLogout">Logout</div>
-    <div><router-view/></div>
+    <div><router-view @update-logged="updateLogged"/></div>
   </mwc-top-app-bar>
 </template>
 
@@ -22,14 +22,7 @@ export default {
     }
   },
   mounted() {
-    fireApp.getCurrentUser()
-      .then((user)=> {
-        this.logged = user;
-        this.$router.push('Dashboard');
-        })
-      .catch(() => {
-        this.logged = false;
-      });
+    this.updateLogged(true);
   },
   methods: {
     handleAbout() {
@@ -45,6 +38,18 @@ export default {
           // eslint-disable-next-line 
           console.log('error', error)
         });
+    },
+    updateLogged(status) {
+      if(status) {
+        fireApp.getCurrentUser()
+        .then((user)=> {
+          this.logged = user;
+          this.$router.push('Dashboard');
+          })
+        .catch(() => {
+          this.logged = false;
+        });
+      }
     }
   },
 }
